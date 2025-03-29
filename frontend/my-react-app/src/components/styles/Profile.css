@@ -1,0 +1,143 @@
+.profile-container {
+    max-width: 800px;
+    margin: 6rem auto 2rem;
+    padding: 0 1.5rem;
+  }
+  
+  .profile-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .profile-avatar-wrapper {
+    position: relative;
+  }
+  
+  .profile-avatar {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .profile-avatar-upload {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #2563eb;
+    color: white;
+    padding: 0.5rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 50%;
+  }
+  
+  .profile-avatar-upload:hover {
+    background-color: #1d4ed8;
+  }
+  
+  .profile-info h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+  }
+  
+  .profile-info p {
+    color: #6b7280;
+  }
+  
+  .profile-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .form-group label {
+    font-weight: 500;
+    color: #374151;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 0.75rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  .form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  .profile-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  
+  .button--secondary {
+    background-color: #e5e7eb;
+    color: #374151;
+  }
+  
+  .button--secondary:hover {
+    background-color: #d1d5db;
+  }
+  
+  .profile-section {
+    margin-bottom: 2rem;
+  }
+  
+  .profile-section h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .profile-header {
+      flex-direction: column;
+      text-align: center;
+      gap: 1rem;
+    }
+  
+    .profile-avatar {
+      width: 6rem;
+      height: 6rem;
+    }
+  
+    .profile-content {
+      padding: 1.5rem;
+    }
+  
+    .profile-actions {
+      flex-direction: column;
+    }
+  }
