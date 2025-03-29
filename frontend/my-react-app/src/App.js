@@ -4,7 +4,7 @@ import ChatInterface from './components/ChatInterface';
 function App() {
     return (
         <div className="App">
-            <h1>Financial Literacy Chatbot</h1>
+            <h1>Gemini FinSense</h1>
             <ChatInterface />
         </div>
     );

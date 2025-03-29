@@ -1,27 +1,48 @@
 .chat-container {
-    width: 100%;
-    max-width: 600px;
-    margin: auto;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 16px;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+}
+
+.chat-title {
+    font-size: 24px;
+    color: #fff; /* Ensure text is visible on a colorful background */
 }
 
 .messages {
-    height: 300px;
+    max-height: 400px;
     overflow-y: auto;
-    margin-bottom: 16px;
+    padding: 10px;
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
 }
 
 .message {
-    padding: 8px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
-.message.user {
-    text-align: right;
+.message.user .bubble {
+    background-color: #d1e7dd; /* Light green */
 }
 
-.message.bot {
-    text-align: left;
+.message.bot .bubble {
+    background-color: #f8d7da; /* Light pink */
+}
+
+.input-form {
+    display: flex;
+}
+
+.input-field {
+    flex-grow: 1;
+}
+
+.send-button {
+    padding: 10px;
 }
