@@ -6,38 +6,34 @@ from .serializers import FinancialQuerySerializer, FinancialResponseSerializer
 import requests
 from decouple import config
 
-class QueryView(APIView):
+class ChatView(APIView):
     def post(self, request):
-        serializer = FinancialQuerySerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            query_text = serializer.data['query_text']
-            response_text = self.call_gemini_api(query_text)
-            response = FinancialResponse.objects.create(query_id=serializer.data['id'], response_text=response_text)
-            return Response(FinancialResponseSerializer(response).data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        user_input = request.data.get('message', '')
+        if user_input:
+            response_text = self.call_gemini_api(user_input)
+            return Response({'response': response_text}, status=status.HTTP_200_OK)
+        return Response({'error': 'No message provided'}, status=status.HTTP_400_BAD_REQUEST)
 
     def call_gemini_api(self, query_text):
         api_url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
         headers = {"Content-Type": "application/json"}
         payload = {
-            "contents": [{"parts": [{"text": query_text}]}],
+            "contents": [{
+                "parts": [{"text": query_text}]
+            }],
             "generationConfig": {
                 "maxOutputTokens": 2048,
                 "temperature": 0.7
             }
         }
         response = requests.post(f"{api_url}?key={config('GEMINI_API_KEY')}", headers=headers, json=payload)
-
-        print("API Response Status Code:", response.status_code)
-        print("API Response Body:", response.text)
-
+        
         if response.status_code == 200:
             try:
+                # return response.json().get('contents', [{}])[0].get('parts', [{}])[0].get('text', "No valid response")
                 response_json = response.json()
                 return response_json['candidates'][0]['content']['parts'][0]['text']
             except (IndexError, KeyError):
                 return "Malformed response from Gemini API"
         else:
-            return f"Error {response.status_code}: {response.text}"
-
+            return f"Unexpected error: {response.status_code}"
