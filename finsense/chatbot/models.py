@@ -1,3 +1,10 @@
 from django.db import models
 
-# Create your models here.
+class FinancialQuery(models.Model):
+    query_text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+class FinancialResponse(models.Model):
+    query = models.ForeignKey(FinancialQuery, on_delete=models.CASCADE)
+    response_text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
