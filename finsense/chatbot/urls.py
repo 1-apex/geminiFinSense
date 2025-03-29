@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import QueryView
+from .views import ChatView
 
 urlpatterns = [
-    path('query/', QueryView.as_view(), name='query'),
+    path('chat/', ChatView.as_view(), name='chat'),
 ]
